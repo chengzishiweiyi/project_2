@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ZH-ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 遍历数组：v-for=“（item，index ）in xxx  ：key=“yyy”” -->
+        <button @click.once="addPerson">点我新增一个老六</button>
+        <!-- 对比算法diff相同的复用，不同的新增，没有的新增 -->
+        <li v-for="p in person" :key="p.id">
+            {{p.name}}-{{p.age}}
+            <input type="text">
+        </li>
+        <!-- 遍历对象v-for=“” -->
+        <li v-for="(value,key) in car">
+            {{key}}-{{value}}
+        </li>
+        <!-- 遍历字符串：v-for=“（item，index ）in xxx  ：key=“yyy”” -->
+
+
+    </div>
+    <script>
+        Vue.config.productionTip = false;
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                person: [
+                    { id: 1, name: "张三", age: 18 },
+                    { id: 2, name: "李四", age: 19 },
+                    { id: 3, name: "王五", age: 20 },
+                ],
+                car:{
+                    name :"奔驰",
+                    price :"100000",
+                    rate :"10%",
+                    color :"red"
+                }
+            },
+            methods: {
+                addPerson() {
+                    this.person.push(
+                        { id: 4, name: "老六", age: 21 }
+                    );
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ZH-ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h2>当前的n值为:{{n}}</h2>
+        <button @click="n++">点我n+1</button>
+        <!-- v-show的使用 :适用于切换频率高的-->
+        <!-- <div v-show="n==1">我是一个人</div>
+        <div v-show="n==2">我是一个好人</div>
+        <div v-show="n==3">我是一个老好人</div>
+        <div v-show="n==4">我是一个老好的人</div>
+        <div v-show="n==5">我是一个老好的男人</div>
+        <div v-show="n==6">我是一个老好的老男人</div> -->
+        <!-- v-if的使用 ：适用于只进行一次切换的-->
+        <!-- <div v-if="n==1">我是一个人</div>
+        <div v-if="n==2">我是一个好人</div>
+        <div v-if="n==3">我是一个老好人</div>
+        <div v-if="n==4">我是一个老好的人</div>
+        <div v-if="n==5">我是一个老好的男人</div>
+        <div v-if="n==6">我是一个老好的老男人</div> -->
+        <!-- v-if与v-else-if与v-else的使用：和ifelse类似但是中间不能插入其他语句 -->
+        <div v-if="n==1">我是一个人</div>
+        <div v-else-if="n==2">我是一个好人</div>
+        <div v-else-if="n==3">我是一个老好人</div>
+        <div v-else-if="n==4">我是一个老好的人</div>
+        <div v-else-if="n==5">我是一个老好的男人</div>
+        <div v-else-if="n==6">我是一个老好的老男人</div>
+        <!-- v-if 配合template使用的使用：不影响页面结构属性-->
+        <template v-if="n==7">
+            <div>
+                <h3>曹</h3>
+                <h3>羽</h3>
+                <h3>聪</h3>
+            </div>
+        </template>
+    </div>
+    <script>
+        Vue.config.productionTip = false;
+        let vm = new Vue({
+            el:"#app",
+            data: {
+                n:0
+            },
+            methods: {}
+        });
+    </script>
+</body>
+
+</html>

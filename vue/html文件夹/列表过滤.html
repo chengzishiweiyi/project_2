@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ZH-ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../vue.js"></script>
+</head>
+
+<body>
+    <center>
+        <div id="app">
+            <!-- v-model双向绑定后可以拿到用户输入的内容 -->
+            <!-- placeholder可以把输入框中的内容变暗 -->
+            <input type="text" placeholder="请输入姓名" v-model="search">
+            <button @click="sortType=2">点我升序排序</button>
+            <button @click="sortType=1">点我降序排序</button>
+            <button @click="sortType=0">原顺序</button>
+            <li v-for="p in filterPerson">
+                {{p.name}} - {{p.age}} -{{p.gender}}
+            </li>
+        </div>
+    </center>
+
+    <script>
+        Vue.config.productionTip = false;
+        // #region 监听属性
+        // let vm = new Vue({
+        //     el: "#app",
+        //     data: {
+        //         search: "",
+        //         person: [
+        //             { name: "马冬梅", age: 18, gender: "女" },
+        //             { name: "周冬雨", age: 19, gender: "女" },
+        //             { name: "任嘉伦", age: 21, gender: "男" },
+        //             { name: "周杰伦", age: 20, gender: "男" }
+        //         ],
+        //         filterPerson: []
+        //     },
+        //     watch: {
+        //         search: {
+        //             immediate:true,
+        //             handler(value) {
+        //                 // console.log("我被调用了");
+        //                 this.filterPerson = this.person.filter(item => {
+        //                     return item.name.indexOf(value) !== -1;
+        //                 });
+        //             }
+        //         }
+        //     },
+        // });
+        //#endregion
+        //#region 计算属性
+        // let vm = new Vue({
+        //     el: "#app",
+        //     data: {
+        //         search: "",
+        //         person: [
+        //             { name: "马冬梅", age: 18, gender: "女" },
+        //             { name: "周冬雨", age: 19, gender: "女" },
+        //             { name: "任嘉伦", age: 21, gender: "男" },
+        //             { name: "周杰伦", age: 20, gender: "男" }
+        //         ]
+        //     },
+        //     computed: {
+        //         filterPerson() {
+        //             //过滤器
+        //             return this.person.filter(item => {
+        //                 return item.name.indexOf(this.search) !== -1;
+        //             });
+        //         }
+        //     },
+
+        // });
+        //#endregion
+        //排序#region
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                search: "",
+                person: [
+                { name: "马冬梅", age: 18, gender: "女" },
+                    { name: "周冬雨", age: 19, gender: "女" },
+                    { name: "任嘉伦", age: 21, gender: "男" },
+                    { name: "周杰伦", age: 20, gender: "男" }
+                ],
+                sortType:"0"//0代表原顺序，1代表降序，2代表升序
+            },
+            computed: {
+                filterPerson() {
+                    //过滤器
+                    const arr= this.person.filter(item => {
+                        return item.name.indexOf(this.search) !== -1;
+                    });
+                    arr.sort((a,b)=>{
+                        return this.sortType=="0"?0:(this.sortType=="1"?(a.age-b.age):(b.age-a.age));
+                        // sort函数的两个参数升序为a-b，降序为b-a
+                        // if(this.sortType=="2"){
+                        //     return a.age-b.age;
+                        // }else if(this.sortType=="1"){
+                        //     return b.age-a.age;
+                        // }else if(this.sortType=="0"){
+                        //     return a.name.localeCompare(b.name);
+                        // }
+                    });
+                    return arr;
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

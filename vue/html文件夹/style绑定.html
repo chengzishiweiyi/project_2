@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ZH-ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../vue.js"></script>
+    <style>
+        * {
+            margin: 10px;
+            padding: 0px;
+        }
+        .sad{
+            width: 80px;
+            height: 80px;
+            background-color: green;
+        }
+        .happy{
+            width: 80px;
+            height: 80px;
+            background-color: blue;
+        }
+        .angry{
+            width: 80px;
+            height: 80px;
+            background-color: red;
+        }
+        .cry{
+            width: 80px;
+            height: 60px;
+            background-color: yellow;
+        }
+        .cyc1{
+            width: 100px;
+            height: 30px;
+            border: 3px solid black;
+        }
+        .cyc2{
+            width: 100px;
+            height: 30px;
+            border-radius: 20%;
+        }
+        .cyc3{
+            width: 100px;
+            height: 30px;
+            font-weight: bold;
+            font-style: italic;
+            background-color: #ff0000;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <!-- //class绑定样式字符串写法 -->
+            <div class="name" :class="mood" @click="changModel"></div>
+            <!-- //class绑定样式数组写法 -->
+            <div class="age" :class="arr" ></div>
+            <!-- //class绑定样式对象写法 -->
+            <div class="age" :class="obj"></div>
+        </div>
+    </div>
+    <script>
+        Vue.config.productionTip = false;
+        let vm = new Vue({
+            el:"#app",
+            data: {
+                mood:"happy",
+                arr:["cyc1","cyc2","cyc3"],
+                obj:{
+                    cyc1:"cyc1",
+                    cyc2:"cyc2",
+                    cyc3:"cyc3"
+                }
+            },
+            methods: {
+                changModel () {
+                    console.log("点击了");
+                    const arr= ["sad", "happy", "angry"];
+                    let index=Math.floor(Math.random() * 3)
+                    this.mood =arr[index] ;
+                },
+                changModel1 () {
+                    console.log("点击了");
+                    const arr= ["sad", "happy", "angry"];
+                    let index=Math.floor(Math.random() * 3)
+                    this.mood =arr[index] ;
+                },
+            },
+        });
+    </script>
+</body>
+
+</html>

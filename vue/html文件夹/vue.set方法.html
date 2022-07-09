@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ZH-ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>学校信息</h1>
+        <h2>学校姓名：{{school}}</h2>
+        <h2>学校位置：{{location}}</h2>
+        <hr>
+        <h1>学生信息</h1>
+        <button @click="addGender">点我添加性别</button>
+        <h2>学生姓名：{{student}}</h2>
+        <h2>学生性别：{{sex}}</h2>
+        <h2>学生年龄：{{age}}</h2>
+        <h2>学生的朋友：</h2>
+        <li v-for="friend in friends">
+            姓名：{{friend.name}}-性别：{{friend.age}}-爱好：{{friend.hobby}}
+        </li>
+       
+        </div>
+    <script>
+        Vue.config.productionTip = false;
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                school: "唐山学院",
+                location: "唐山市路北区",
+                student: "张三",
+                age: "18",
+                friends: [
+                    {name: "李四",age: "20",hobby: "打羽毛球"},
+                    {name: "王五",age: "21",hobby: "打乒乓球"},
+                    {name: "老刘",age: "20",hobby: "打网球"},
+                ],
+                sex:""
+            },
+            methods: {
+                addGender(){
+                    Vue.set(this._data,"sex","男")
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

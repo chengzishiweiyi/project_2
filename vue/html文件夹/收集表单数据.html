@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ZH-ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <form @submit.prevent="demo">
+            <!-- 获取text/password数据用v-model即可 -->
+            <h2>学生姓名：<input type="text" v-model="user.name"></h2>
+            <h2>学生密码：<input type="password" v-model="user.password"></h2>
+            <h2>学生性别：</h2>
+            <!-- 性别获取默认为男需要手动添加value值再用v-model -->
+            男<input type="radio" name="sex" v-model="user.gender" value="male">
+            女<input type="radio" name="sex" v-model="user.gender" value="female"></br></br>
+            <!-- selectku  -->
+            <select v-model="user.city">
+                <option value="beijing">北京</option>
+                <option value="shenzhen">深圳</option>
+                <option value="shanghai">上海</option>
+                <option value="langfang">廊坊</option>
+            </select>
+            <!-- checkbox通过有value值添加value，没有value值不进行添加 -->
+            <h2>学生爱好：</h2>
+            抽烟<input type="checkbox" v-model="user.hobby" value="cy">
+            喝酒<input type="checkbox" v-model="user.hobby" value="hj">
+            烫头<input type="checkbox" v-model="user.hobby" value="tt">
+            <h2>对学生的评价：</h2>
+            <textarea v-model.lazy="user.other"></textarea></br></br>
+            <input type="checkbox" v-model="user.agree">是否同意<a href="http://www.baidu.com">该协议</a>
+        </br></br>
+        <button>提交</button>
+        </form>
+    </div>
+    <script>
+        Vue.config.productionTip = false;
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                user: {
+                    name: '',
+                    password: '',
+                    gender: 'male',
+                    hobby: [],
+                    city: 'beijing',
+                    agree: '',
+                    other: ''
+                }
+            },
+            methods: {
+                demo() {
+                    alert(1)
+                    console.log(JSON.stringify(this.user))
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

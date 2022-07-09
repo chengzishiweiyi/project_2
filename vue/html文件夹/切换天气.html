@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ZH-ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>天气</h1>
+        <h2>今天天气{{weather}}</h2>
+        <button @click="changeWeather">点我切换天气</button>
+    </div>
+    <script>
+        Vue.config.productionTip = false;
+        let vm = new Vue({
+            el:"#app",
+            data: {
+                weather: "晴天"
+            },
+            methods: {
+                changeWeather(){
+                    this.weather = this.weather == "晴天" ? "雨天" : "晴天";
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

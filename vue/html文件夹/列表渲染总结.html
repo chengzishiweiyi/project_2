@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ZH-ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="student.age++">点我年龄+1</button>
+        <button @click="addGender">点我新增性别属性，默认值为男</button>
+        <button @click="student.sex='未知'">点我修改性别</button>
+        <button @click="addFirstHobby">点我在爱好前面新增一个爱好</button>
+        <button @click="updateHobby">点我在修改爱好为开车</button>
+        <button @click.once="addNewFriend">点我添加一个朋友</button>
+        <button @click="updateFirstFriendAge">点我修改第一个朋友的年龄</button>
+        <button @click="removeSmoke">点我过滤掉爱好中的抽烟</button>
+        <h1>学校信息</h1>
+        <h2>学校姓名：{{school.name}}</h2>
+        <h2>学校位置：{{school.location}}</h2>
+        <hr>
+        <h1>学生信息</h1>
+        <h2>姓名：{{student.name}}</h2>
+        <h2>年龄：{{student.age}}</h2>
+        <h2>性别：{{student.sex}}</h2>
+        <h2>爱好：</h2>
+        <li v-for="(h, index) in student.hobby">
+            {{h}}
+        </li>
+
+
+        <h2>朋友： </h2>
+        <li v-for="(f, index) in student.friends">
+            {{f.name}}-{{f.age}}
+        </li>
+
+
+        <hr>
+    </div>
+    <script>
+        Vue.config.productionTip = false;
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                student: {
+                    name: "张三",
+                    age: 18,
+                    hobby: ["唱", "跳","抽烟", "rap", "篮球"],
+                    friends: [
+                        { name: "李四", age: 20 },
+                        { name: "王五", age: 21 },
+                        { name: "赵六", age: 22 }
+                    ]
+                },
+                school: {
+                    name: "唐山学院",
+                    location: "唐山市路北区"
+                }
+            },
+            methods: {
+                addGender() {
+                    Vue.set(this.student,"sex","男")
+                },
+                addFirstHobby(){
+                    this.student.hobby.unshift("奔跑")
+                },
+                updateHobby(){
+                    this.student.hobby.splice(0,1,"开车")
+                },
+                addNewFriend(){
+                    this.student.friends.unshift({name:"张三",age:18})
+                },
+                updateFirstFriendAge(){
+                    this.student.friends[0].age=19
+                },
+                removeSmoke(){
+                    this.student.hobby=this.student.hobby.filter(h=>h!="抽烟")
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

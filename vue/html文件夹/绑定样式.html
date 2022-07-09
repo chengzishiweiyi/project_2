@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ZH-ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../vue.js"></script>
+    <style>
+        * {
+            margin: 10px;
+            padding: 0px;
+        }
+
+        .happiness {
+            width: 80px;
+            height: 80px;
+            background-color: red;
+        }
+
+        .happy {
+            width: 80px;
+            height: 80px;
+            background-color: blue;
+        }
+
+        .sad {
+            width: 80px;
+            height: 80px;
+            background-color: green;
+        }
+
+        .name {
+            width: 80px;
+            height: 60px;
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="name" :class="mood" @click="changModel"></div>
+        <div class="age" :class="mood" @click="changModel"></div>
+    </div>
+    <script>
+        Vue.config.productionTip = false;
+        let abc=["sad", "happy", "happiness"];
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                mood:"happy"
+            },
+            methods: {        
+                changModel: function () {
+                    this.mood = abc[Math.floor(Math.random() * 3)];
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
